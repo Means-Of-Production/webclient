@@ -11,7 +11,9 @@ flowchart TD
     existingLibrary -- No --> createLibrary[Create Library]
     
     signin --> pickLibrary[Pick Library]
-    pickLibrary --> userHome[User Home]
+    pickLibrary --> isUserAdmin{Is User Admin?}
+    isUserAdmin -- No --> userHome[User Home]
+    isUserAdmin -- Yes --> adminHome[Admin Home]
     userHome --> search[Search]
     userHome --> viewLoans[View Loans]
     userHome --> fees[Fees]
@@ -33,4 +35,10 @@ flowchart TD
     areOtherReservations -- Yes --> bidForReservation[Bid for Reservation]
     
     renew --> reserve
+    
+    createLibrary --> whatTypeOfLibrary{What Type of Library?}
+    whatTypeOfLibrary -- Standard --> standardLibrary[Standard Library]
+    whatTypeOfLibrary -- Distributed --> distributedLibrary[Distributed Library]
+    whatTypeOfLibrary -- BuyNothingGroup --> buyNothingGroup[Buy Nothing Group]
+    
 ```
